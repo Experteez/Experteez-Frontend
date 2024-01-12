@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { AiOutlineRight } from "react-icons/ai";
 interface CategoryProps {
   image: string;
@@ -29,10 +30,10 @@ export default function Category({
       </div>
 
       <div className="px-9">
-        <button className="flex gap-2 items-center py-2 px-6 bg-[#FF6B2D] hover:bg-[#FF6B2D]/90 rounded-3xl text-white">
+        <Link href={"/project"} className="flex gap-2 w-1/2 items-center py-2 px-6 bg-[#FF6B2D] hover:bg-[#FF6B2D]/90 rounded-3xl text-white">
           <p>Explore</p>
           <AiOutlineRight />
-        </button>
+        </Link>
       </div>
     </div>
   );

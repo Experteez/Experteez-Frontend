@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ToasterContext from "./context/ToasterContext";
+import { cookies } from 'next/headers'
 
 const poppins = Poppins({
   weight: ["400", "600", "700"],
@@ -21,12 +22,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const cookie = cookies()
+
+  //get cookies
+
   return (
     <html lang="en">
-      <link rel="icon" href="/yalz.png" />
+      <link rel="icon" href="/logo-only.svg" />
       <body className={poppins.className}>
+        <Navbar login={cookie.get("token") ? true : false} />
         <ToasterContext />
-        <Navbar />
         <div className="py-24">{children}</div>
         <Footer />
       </body>

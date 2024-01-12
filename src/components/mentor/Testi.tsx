@@ -18,9 +18,9 @@ export default function Testi({
 }: TestiProps) {
   return (
     <div className="w-[400px] lg:w-[596px] px-12 py-6 flex gap-4 justify-between rounded-xl shadow-xl">
-      <div className="hidden lg:w-[420px] aspect-square border-2 border-white bg-slate-300 rounded-full relative overflow-hidden">
+      <div className="hidden lg:block lg:w-[420px] aspect-square border-2 border-white bg-slate-300 rounded-full relative overflow-hidden">
         <Image
-          src={"/mentor/ara.jpeg"}
+          src={imageOrang}
           fill={true}
           alt="profile"
           className="object-cover w-full h-full"

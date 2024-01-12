@@ -16,8 +16,10 @@ export default function Page() {
           Please hoping an email reply within <strong>14 days.</strong>
         </p>
 
-        <Link href="/"> 
-            <p className="bg-[#FF6B2D] font-semibold text-white p-2 rounded-xl">Back to Home</p>
+        <Link href="/">
+          <p className="bg-[#FF6B2D] font-semibold text-white p-2 rounded-xl">
+            Back to Home
+          </p>
         </Link>
       </div>
     </div>

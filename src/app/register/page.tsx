@@ -1,32 +1,65 @@
 "use client";
 import Image from "next/image";
-import {
-  AiOutlineEyeInvisible,
-  AiOutlineEye,
-  AiOutlineArrowLeft,
-} from "react-icons/ai";
-import { useEffect, useState } from "react";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import Link from "next/link";
+import Cookies from "universal-cookie";
 
 export default function Login({ whatsapp }: { whatsapp?: string }) {
   const [showPassword, setShowPassword] = useState(false);
-  const [data, setData] = useState({ email: "", password: "" });
   const router = useRouter();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [birthdate, setBirthdate] = useState("");
+  const [role, setRole] = useState("Talent");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const cookies = new Cookies();
 
-  // const [isSubmitting, setIsSubmitting] = useState(false);
+  useEffect(() => {
+    if (isSubmitting) {
+      toast.loading("Loading...");
+    } else {
+      toast.dismiss();
+    }
+  }, [isSubmitting]);
 
-  // useEffect(() => {
-  //   if (isSubmitting) {
-  //     toast.loading("Loading...");
-  //   } else {
-  //     toast.dismiss();
-  //   }
-  // }, [isSubmitting]);
+  const handleRegister = async () => {
+    setIsSubmitting(true);
+    const res = await fetch(
+      "http://127.0.0.1:8080/" + "api/v1/users/talent/register",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          password,
+          birth_date: birthdate,
+          full_name: name,
+        }),
+      }
+    );
+
+    const data = await res.json();
+
+    if (res.ok) {
+      setTimeout(() => {
+        toast.success("Successfully Registered!");
+      }, 500);
+      cookies.set("token", data.token);
+      router.push("/");
+      router.refresh();
+    } else {
+      setTimeout(() => {
+        toast.error("Failed to Register!");
+      }, 500);
+    }
+    setIsSubmitting(false);
+  };
 
   return (
-    <div className="container h-[120vh] mx-auto md:flex flex-col items-end justify-between md:flex-end w-full">
+    <div className="container h-[140vh] mx-auto md:flex flex-col items-end justify-between md:flex-end w-full">
       <div className="w-screen h-[222px] relative md:hidden">
         <Image
           src={"/user/login.png"}
@@ -52,12 +85,22 @@ export default function Login({ whatsapp }: { whatsapp?: string }) {
           </div>
 
           <div>
+            <label className="text-sm font-semibold">Name</label>
+            <input
+              type="text"
+              className="rounded-lg border focus:border-black border-[#737373] w-full p-3"
+              placeholder="Enter your name"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+
+          <div>
             <label className="text-sm font-semibold">Email</label>
             <input
               type="text"
               className="rounded-lg border focus:border-black border-[#737373] w-full p-3"
               placeholder="Enter your email"
-              onChange={(e) => setData({ ...data, email: e.target.value })}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -69,7 +112,7 @@ export default function Login({ whatsapp }: { whatsapp?: string }) {
               type={showPassword ? "text" : "password"}
               className="rounded-lg focus:border-black border border-[#737373] w-full p-3"
               placeholder="Enter your password"
-              onChange={(e) => setData({ ...data, password: e.target.value })}
+              onChange={(e) => setPassword(e.target.value)}
             />
             {showPassword ? (
               <AiOutlineEye
@@ -92,7 +135,7 @@ export default function Login({ whatsapp }: { whatsapp?: string }) {
               type={showPassword ? "text" : "password"}
               className="rounded-lg focus:border-black border border-[#737373] w-full p-3"
               placeholder="Enter your password"
-              onChange={(e) => setData({ ...data, password: e.target.value })}
+              onChange={(e) => setPassword(e.target.value)}
             />
             {showPassword ? (
               <AiOutlineEye
@@ -114,7 +157,7 @@ export default function Login({ whatsapp }: { whatsapp?: string }) {
               type="date"
               className="rounded-lg border focus:border-black border-[#737373] w-full p-3"
               placeholder="Enter your email"
-              onChange={(e) => setData({ ...data, email: e.target.value })}
+              onChange={(e) => setBirthdate(e.target.value)}
             />
           </div>
 
@@ -124,7 +167,7 @@ export default function Login({ whatsapp }: { whatsapp?: string }) {
             <div className="px-8 rounded-lg border focus:border-black border-[#737373] w-full p-3">
               <select
                 className="w-full outline-none focus:outline-none"
-                onChange={(e) => setData({ ...data, email: e.target.value })}
+                onChange={(e) => setRole(e.target.value)}
               >
                 <option value="student">Talent</option>
                 <option value="teacher">Mentor</option>
@@ -136,7 +179,7 @@ export default function Login({ whatsapp }: { whatsapp?: string }) {
           <div className="w-full">
             <button
               className="bg-primary text-white rounded-lg py-3 font-semibold w-full"
-              onClick={() => {}}
+              onClick={handleRegister}
             >
               Register
             </button>

@@ -1,21 +1,19 @@
 "use client";
 import Image from "next/image";
-import {
-  AiOutlineEyeInvisible,
-  AiOutlineEye,
-  AiOutlineArrowLeft,
-} from "react-icons/ai";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import Link from "next/link";
+import Cookies from "universal-cookie";
 
 export default function Login({ whatsapp }: { whatsapp?: string }) {
   const [showPassword, setShowPassword] = useState(false);
   const [data, setData] = useState({ email: "", password: "" });
   const router = useRouter();
-
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const cookies = new Cookies();
 
   useEffect(() => {
     if (isSubmitting) {
@@ -24,6 +22,31 @@ export default function Login({ whatsapp }: { whatsapp?: string }) {
       toast.dismiss();
     }
   }, [isSubmitting]);
+
+  const handleLogin = async () => {
+    setIsSubmitting(true);
+    const res = await fetch("http://127.0.0.1:8080/" + "api/v1/users/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      setTimeout(() => {
+        toast.success("Successfully logged in!");
+      }, 500);
+      cookies.set("token", data.token);
+      router.push("/");
+      router.refresh()
+    } else {
+      setTimeout(() => {
+        toast.error("Failed to login!");
+      }, 500);
+    }
+    setIsSubmitting(false);
+  };
 
   return (
     <div className="container h-[85vh] mx-auto md:flex md:flex-start w-full">
@@ -36,29 +59,27 @@ export default function Login({ whatsapp }: { whatsapp?: string }) {
         />
       </div>
 
-        <div className="hidden md:block w-[50%] h-[65vh] relative">
-            <Image
-            src={"/user/happy.svg"}
-            fill={true}
-            alt="login"
-            className="object-cover w-full h-full"
-            />
-        </div>
-
+      <div className="hidden md:block w-[50%] h-[65vh] relative">
+        <Image
+          src={"/user/happy.svg"}
+          fill={true}
+          alt="login"
+          className="object-cover w-full h-full"
+        />
+      </div>
 
       <div className="flex flex-col justify-between lg:justify-center md:w-2/3 lg:w-1/3 md:right-0 lg:right-32 bg-white md:absolute">
         <div className="container flex flex-col mx-auto py-10 md:py-20 px-5 md:px-10 gap-6">
           <div>
-              <Image
-                src={"/logo.png"}
-                width={150}
-                height={40}
-                alt="logo"
-                className="object-cover"
-              />
+            <Image
+              src={"/logo.png"}
+              width={150}
+              height={40}
+              alt="logo"
+              className="object-cover"
+            />
             <h1 className="text-3xl font-bold lg:text-5xl">
-              Welcome to{" "}
-              <span className="text-primary">Experteez</span>
+              Welcome to <span className="text-primary">Experteez</span>
             </h1>
           </div>
 
@@ -68,7 +89,7 @@ export default function Login({ whatsapp }: { whatsapp?: string }) {
               type="text"
               className="rounded-lg border focus:border-black border-[#737373] w-full p-3"
               placeholder="Enter your email"
-              onChange={(e) => setData({ ...data, email: e.target.value })}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -86,7 +107,7 @@ export default function Login({ whatsapp }: { whatsapp?: string }) {
               type={showPassword ? "text" : "password"}
               className="rounded-lg focus:border-black border border-[#737373] w-full p-3"
               placeholder="Enter your password"
-              onChange={(e) => setData({ ...data, password: e.target.value })}
+              onChange={(e) => setPassword(e.target.value)}
             />
             {showPassword ? (
               <AiOutlineEye
@@ -104,7 +125,7 @@ export default function Login({ whatsapp }: { whatsapp?: string }) {
           <div className="w-full">
             <button
               className="bg-primary text-white rounded-lg py-3 font-semibold w-full"
-              onClick={() => {}}
+              onClick={handleLogin}
             >
               Login
             </button>
@@ -112,9 +133,7 @@ export default function Login({ whatsapp }: { whatsapp?: string }) {
             <p className="text-xs mt-3 text-center font-semibold">
               {"Don't"} have account?{" "}
               <span className="text-primary">
-                <a href={"/register"}>
-                  Register
-                </a>
+                <a href={"/register"}>Register</a>
               </span>{" "}
               here
             </p>

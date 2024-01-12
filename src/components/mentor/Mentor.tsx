@@ -157,7 +157,7 @@ export default function Mentor() {
 
         <div className="flex flex-col gap-2">
           <Testi
-            imageOrang="/mentor/ara.jpeg"
+            imageOrang="/mentor/auva.jpeg"
             imageCompany="/mentor/google.png"
             name="John Doe"
             company="Solutions Architect"
@@ -165,7 +165,7 @@ export default function Mentor() {
           />
 
           <Testi
-            imageOrang="/mentor/ara.jpeg"
+            imageOrang="/mentor/auva.jpeg"
             imageCompany="/mentor/google.png"
             name="John Doe"
             company="Solutions Architect"

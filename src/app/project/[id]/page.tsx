@@ -5,16 +5,16 @@ import { AiOutlineRight } from "react-icons/ai";
 export default function Page() {
   return (
     <div className="py-12 flex flex-col gap-16 px-20">
-      <section className="bg-white flex gap-28 px-72 justify-center items-center">
+      <section className="bg-white flex gap-28 lg:px-72 justify-center items-center">
         <Image
           src={"/mentor/google.png"}
           width={227}
           height={500}
           alt="company"
-          className=""
+          className="hidden lg:block"
         />
 
-        <div className="flex flex-col gap-4 w-2/3">
+        <div className="flex flex-col gap-4 lg:w-2/3">
           <h1 className="font-semibold text-4xl">Software Engineer</h1>
           <p className="text-base">
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -69,13 +69,13 @@ export default function Page() {
           </ul>
         </div>
 
-        <div className="flex gap-20 justify-start w-full">
-          <div className="flex flex-col w-1/2">
+        <div className="flex flex-col lg:flex-row gap-20 justify-start w-full">
+          <div className="flex flex-col lg:w-1/2">
             <label>Why Are You Choosing This Project</label>
             <textarea className="border-2 border-gray-300 rounded-lg px-2 h-60"></textarea>
           </div>
 
-          <div className="flex flex-col w-1/2">
+          <div className="flex flex-col lg:w-1/2">
             <label>Tell us About Yourself</label>
             <textarea className="border-2 border-gray-300 rounded-lg px-2 h-60"></textarea>
           </div>
@@ -83,7 +83,7 @@ export default function Page() {
 
         <Link
           href="/project/apply/submission"
-          className="bg-[#FF6B2D] self-center mt-12 w-[15%] justify-around hover:bg-[#FF6B2D]/90 text-white rounded-full py-2 px-4 h-fit flex items-center"
+          className="bg-[#FF6B2D] self-center mt-12 gap-8 lg:w-[15%] justify-around hover:bg-[#FF6B2D]/90 text-white rounded-full py-2 px-4 h-fit flex items-center"
         >
           <p className="font-semibold">Apply</p>
 

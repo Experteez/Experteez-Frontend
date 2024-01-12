@@ -1,61 +1,23 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import MenuIcon from "./MenuIcon";
 import Link from "next/link";
+import Cookies from "universal-cookie";
 
-export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+interface NavbarProps {
+  login?: boolean;
+}
 
+export default function Navbar(login: NavbarProps) {
+  const cookie = new Cookies();
   const [project, setProject] = useState(true);
   const [mentor, setMentor] = useState(false);
   const [chat, setChat] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 0;
-      setScrolled(isScrolled);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    // Cleanup the event listener on component unmount
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const handleSmoothScroll = (targetId: string) => {
-    const targetElement = document.getElementById(targetId);
-
-    if (targetElement) {
-      const offset = -100; // Adjust this value based on your preference
-      const targetPosition =
-        targetElement.getBoundingClientRect().top + window.scrollY;
-      const scrollTo = targetPosition + offset;
-
-      window.scrollTo({
-        top: scrollTo,
-        behavior: "smooth",
-      });
-      setOpen(false);
-    }
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-    setOpen(false);
-  };
-
-  const scrollToBottom = () => {
-    window.scrollTo({
-      top: document.documentElement.scrollHeight,
-      behavior: "smooth",
-    });
-    setOpen(false);
+  const handleSignOut = () => {
+    cookie.remove("token");
+    window.location.reload();
   };
 
   const [open, setOpen] = useState(false);
@@ -81,7 +43,9 @@ export default function Navbar() {
 
         <div
           className={`transform transition-transform duration-300 ease-in-out ${
-            open ? "translate-y-0 bg-white border-2 py-6 gap-6 border-gray-100" : "-translate-y-full border-none"
+            open
+              ? "translate-y-0 bg-white border-2 py-6 gap-6 border-gray-100"
+              : "-translate-y-full border-none"
           } lg:translate-y-0 z-40 flex flex-col lg:flex-row justify-between lg:items-center w-[100%] lg:w-[60%]`}
         >
           <ul
@@ -132,21 +96,50 @@ export default function Navbar() {
               }}
             >
               <a
-                className={`${open? "inline-flex" : "hidden -z-50 lg:inline-flex"} block py-2 blur-0 px-3 rounded lg:bg-transparent lg:p-0`}
+                className={`${
+                  open ? "inline-flex" : "hidden -z-50 lg:inline-flex"
+                } block py-2 blur-0 px-3 rounded lg:bg-transparent lg:p-0`}
                 aria-current="page"
               >
-                Chat Pofil
+                Chat Miez 
               </a>
             </li>
           </ul>
-          <div className="self-center">
-            <Link
-              href={"/login"}
-              className={`${open? "inline-flex" : "hidden -z-50"} lg:inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-primary hover:bg-primary/90 border border-transparent rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500`}
-            >
-              Login
-            </Link>
-          </div>
+
+          {login.login ? (
+            <div className="flex items-center gap-0">
+              <div className="flex items-center gap-3 relative cursor-pointer">
+                <div className="w-9 aspect-square bg-slate-300 rounded-full relative overflow-hidden">
+                  <Image
+                    src={"/user/ava-dummy.png"}
+                    fill={true}
+                    alt="profile"
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+                <p className="font-league font-semibold text-[1rem] w-24">
+                  Iyal
+                </p>
+              </div>
+              <button
+                className="bg-red-500 p-2 flex items-center justify-center text-white rounded-lg"
+                onClick={handleSignOut}
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <div className="self-center">
+              <Link
+                href={"/login"}
+                className={`${
+                  open ? "inline-flex" : "hidden -z-50"
+                } lg:inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-primary hover:bg-primary/90 border border-transparent rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500`}
+              >
+                Login
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </nav>

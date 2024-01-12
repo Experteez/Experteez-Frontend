@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <div className="bg-primary flex flex-col lg:flex-row gap-12 lg:gap-60 py-12 text-white px-12">
       <div className="flex flex-col justify-between">
-        <Image src="/logo-removed.png" alt="logo" width={300} height={100} />
+        <Image src="/logo-white.svg" alt="logo" width={300} height={100} />
         <p className="text-white text-sm">
           @2024 <br /> All Rights Reserved <br /> Terms of Service | Privacy
         </p>
