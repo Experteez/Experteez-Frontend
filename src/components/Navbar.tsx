@@ -67,7 +67,7 @@ export default function Navbar() {
       <div className="max-w-screen-xl z-50 flex flex-wrap justify-between lg:justify-normal items-center mx-auto p-4 px-8">
         <a
           href="/"
-          className="flex w-1/3 cursor-pointer justify-start gap-4 items-center space-x-3 rtl:space-x-reverse"
+          className="flex w-1/3  z-50 cursor-pointer justify-start gap-4 items-center space-x-3 rtl:space-x-reverse"
         >
           <Image src="/logo.png" width={150} height={40} alt="logo" />
         </a>
@@ -85,7 +85,7 @@ export default function Navbar() {
           } lg:translate-y-0 z-40 flex flex-col lg:flex-row justify-between lg:items-center w-[100%] lg:w-[60%]`}
         >
           <ul
-            className={`font-medium flex flex-col gap-4 px-4 lg:p-0 mt-4 lg:bg-transparent rounded-lg lg:flex-row lg:space-x-8 rtl:space-x-reverse lg:mt-2 lg:border-0`}
+            className={`font-semibold flex flex-col gap-4 px-4 lg:p-0 mt-4 lg:bg-transparent rounded-lg lg:flex-row lg:space-x-8 rtl:space-x-reverse lg:mt-2 lg:border-0`}
           >
             <li
               onClick={() => {

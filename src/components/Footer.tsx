@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <div className="bg-secondary flex gap-60 py-12 text-white px-12">
+    <div className="bg-primary flex flex-col lg:flex-row gap-12 lg:gap-60 py-12 text-white px-12">
       <div className="flex flex-col justify-between">
         <Image src="/logo-removed.png" alt="logo" width={300} height={100} />
         <p className="text-white text-sm">

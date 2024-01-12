@@ -3,6 +3,7 @@ import Image from "next/image";
 import { AiOutlineSearch } from "react-icons/ai";
 import Category from "./Category";
 import Testi from "./Testi";
+import Link from "next/link";
 
 export default function Mentor() {
   return (
@@ -30,11 +31,11 @@ export default function Mentor() {
                 <input
                   className=" h-12 md:px-4 w-full rounded-lg text-base outline-none"
                   type="text"
-                  placeholder="Search for a Mentor"
+                  placeholder="Search for a Projects"
                 />
-                <button className="bg-primary hover:bg-primary/90 text-white rounded-lg px-4 h-12">
+                <Link href={"/project"}  className="bg-primary hover:bg-primary/90 text-white rounded-lg px-4 h-12 flex items-center">
                   Search
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -143,7 +144,7 @@ export default function Mentor() {
         </div>
       </section>
 
-      <section className="px-36 flex gap-8 items-center">
+      <section className="px-36 flex flex-col lg:flex-row gap-8 items-center">
         <div className="flex flex-col gap-4">
           <h1 className="text-5xl">
             Projects <strong>Testimonials</strong>
