@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ToasterContext from "./context/ToasterContext";
 
 const poppins = Poppins({
   weight: ["400", "600", "700"],
@@ -24,6 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <link rel="icon" href="/yalz.png" />
       <body className={poppins.className}>
+        <ToasterContext />
         <Navbar />
         <div className="py-24">{children}</div>
         <Footer />

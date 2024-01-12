@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import MenuIcon from "./MenuIcon";
+import Link from "next/link";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -65,7 +66,7 @@ export default function Navbar() {
     >
       <div className="max-w-screen-xl z-50 flex flex-wrap justify-between lg:justify-normal items-center mx-auto p-4 px-8">
         <a
-          onClick={() => scrollToTop()}
+          href="/"
           className="flex w-1/3 cursor-pointer justify-start gap-4 items-center space-x-3 rtl:space-x-reverse"
         >
           <Image src="/logo.png" width={150} height={40} alt="logo" />
@@ -139,12 +140,12 @@ export default function Navbar() {
             </li>
           </ul>
           <div className="self-center">
-            <button
-              onClick={() => scrollToBottom()}
+            <Link
+              href={"/login"}
               className={`${open? "inline-flex" : "hidden -z-50"} lg:inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-primary hover:bg-primary/90 border border-transparent rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500`}
             >
               Login
-            </button>
+            </Link>
           </div>
         </div>
       </div>
