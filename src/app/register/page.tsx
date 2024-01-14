@@ -28,7 +28,7 @@ export default function Login({ whatsapp }: { whatsapp?: string }) {
   const handleRegister = async () => {
     setIsSubmitting(true);
     const res = await fetch(
-      "http://127.0.0.1:8080/" + "api/v1/users/talent/register",
+      process.env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/users/talent/register",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

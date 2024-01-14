@@ -25,11 +25,15 @@ export default function Login({ whatsapp }: { whatsapp?: string }) {
 
   const handleLogin = async () => {
     setIsSubmitting(true);
-    const res = await fetch("http://127.0.0.1:8080/" + "api/v1/users/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+
+    const res = await fetch(
+      process.env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/users/login",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      }
+    );
 
     const data = await res.json();
 
@@ -39,7 +43,7 @@ export default function Login({ whatsapp }: { whatsapp?: string }) {
       }, 500);
       cookies.set("token", data.token);
       router.push("/");
-      router.refresh()
+      router.refresh();
     } else {
       setTimeout(() => {
         toast.error("Failed to login!");
