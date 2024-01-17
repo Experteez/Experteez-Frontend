@@ -6,7 +6,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 export default function Page() {
   return (
     <div>
-      <section className="py-14 flex flex-col gap-4 justify-between items-start px-8 lg:py-20 lg:px-32">
+      <section className="py-14 flex flex-col gap-4 justify-between items-start px-8 lg:py-16 lg:px-32">
         <div className="flex flex-col lg:flex-row items-start justify-between w-full">
           <div className="flex flex-col gap-4 w-[40%]">
             <h1 className="text-4xl lg:text-6xl font-semibold">
@@ -50,7 +50,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="px-8 lg:py-20 lg:px-32 py-14">
+      <section className="px-8 lg:py-20 flex flex-col gap-8 lg:px-32 py-14">
         <div className="flex flex-col lg:flex-row justify-between items-center">
           <div className="w-2/3">
             <h1 className="text-2xl lg:text-4xl font-semibold">
@@ -62,10 +62,21 @@ export default function Page() {
             </p>
           </div>
 
-          <Image src={"/mentor/contact.svg"} width={140} height={600} alt="Contact" />
+          <Image
+            src={"/mentor/contact.svg"}
+            width={140}
+            height={600}
+            alt="Contact"
+          />
         </div>
 
-        <MentorBox />
+        <div className="flex flex-wrap items-center justify-center gap-12">
+          <MentorBox name="Auva" role="UI/UX Designer" />
+          <MentorBox name="Kevin" role="Software Engineer" />
+          <MentorBox name="Naufal" role="Data Scientist" />
+          <MentorBox name="Radit" role="Frontend Developer" />
+          <MentorBox name="Abam" role="Data Scientist" />
+        </div>
       </section>
     </div>
   );
