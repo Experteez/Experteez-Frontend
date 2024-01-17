@@ -2,8 +2,32 @@ import ProjectCard from "@/components/project/ProjectCard";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineSearch } from "react-icons/ai";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import ListProject from "./ListProject";
 
-export default function Page() {
+export default async function Page() {
+  const cookie = cookies();
+  const token = cookie.get("token");
+
+  if (!token) {
+    redirect("/login");
+  }
+  // console.log(token)
+
+  const res = await fetch(
+    "http://127.0.0.1:8080/api/v1/projects",
+
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token.value}`,
+      },
+    }
+  );
+
+  const data = await res.json();
+
   return (
     <div className="flex flex-col gap-12 w-full">
       <section className="bg-primary text-white h-[50vh] flex flex-col w-full gap-4 justify-center items-center">
@@ -63,56 +87,7 @@ export default function Page() {
         <h1 className="font-semibold text-4xl">
           Your Top Picks Projects Awaits You!
         </h1>
-        <div className="flex flex-wrap items-center justify-center gap-16">
-          <ProjectCard
-            category={["Marketing", "Research"]}
-            title="Market Research"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum, nibh et convallis posuere, justo lorem mollis ipsum."
-            location="Bandung"
-            duration="4 months"
-            image="/mentor/google.png"
-          />
-          <ProjectCard
-            category={["Engineerng", "Tech"]}
-            title="Software Engineer"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum, nibh et convallis posuere, justo lorem mollis ipsum."
-            location="Jakarta"
-            duration="3 months"
-            image="/mentor/microsoft.png"
-          />
-          <ProjectCard
-            category={["Tech", "Designer"]}
-            title="UI/UX Designer"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum, nibh et convallis posuere, justo lorem mollis ipsum."
-            location="Bekasi"
-            duration="1 month"
-            image="/mentor/google.png"
-          />
-          <ProjectCard
-            category={["Marketing", "Research"]}
-            title="Social Media Specialist"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum, nibh et convallis posuere, justo lorem mollis ipsum."
-            location="Malang"
-            duration="2 months"
-            image="/mentor/ibm.png"
-          />
-          <ProjectCard
-            category={["Engineering", "Tech"]}
-            title="Quality Assurance"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum, nibh et convallis posuere, justo lorem mollis ipsum."
-            location="Singapore"
-            duration="2 weeks"
-            image="/mentor/google.png"
-          />
-          <ProjectCard
-            category={["Engineering", "Tech"]}
-            title="Backend Developer"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum, nibh et convallis posuere, justo lorem mollis ipsum."
-            location="Palembang"
-            duration="2 months"
-            image="/mentor/microsoft.png"
-          />
-        </div>
+        <ListProject data={data} />
       </section>
     </div>
   );
