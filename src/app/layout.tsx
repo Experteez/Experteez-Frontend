@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ToasterContext from "./context/ToasterContext";
 import { cookies } from 'next/headers'
+import DetailMentor from "@/components/modal/DetailMentor";
 
 const poppins = Poppins({
   weight: ["400", "600", "700"],
@@ -30,6 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <link rel="icon" href="/logo-only.svg" />
       <body className={poppins.className}>
+        <DetailMentor />
         <Navbar login={cookie.get("token") ? true : false} />
         <ToasterContext />
         <div className="py-24">{children}</div>
