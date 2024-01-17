@@ -4,7 +4,7 @@ import { AiOutlineRight } from "react-icons/ai";
 
 export default function Page() {
   return (
-    <div className="py-12 flex flex-col gap-16 px-20">
+    <div className="py-12 flex flex-col gap-16 px-12 lg:px-20">
       <section className="bg-white flex gap-28 lg:px-72 justify-center items-center">
         <Image
           src={"/mentor/google.png"}

@@ -4,16 +4,19 @@ import Image from "next/image";
 import MenuIcon from "./MenuIcon";
 import Link from "next/link";
 import Cookies from "universal-cookie";
+import { usePathname, useRouter } from "next/navigation";
 
 interface NavbarProps {
   login?: boolean;
 }
 
 export default function Navbar(login: NavbarProps) {
+  const pathname = usePathname();
   const cookie = new Cookies();
-  const [project, setProject] = useState(true);
-  const [mentor, setMentor] = useState(false);
-  const [chat, setChat] = useState(false);
+  const [mentor, setMentor] = useState<boolean>(pathname == "/mentor");
+  const [project, setProject] = useState<boolean>(pathname == "/");
+  const [chat, setChat] = useState<boolean>(pathname == "/chat");
+  const router = useRouter();
 
   const handleSignOut = () => {
     cookie.remove("token");
@@ -53,9 +56,6 @@ export default function Navbar(login: NavbarProps) {
           >
             <li
               onClick={() => {
-                setMentor(false);
-                setProject(true);
-                setChat(false);
               }}
               className={`h-12 cursor-pointer ${
                 project && "pb-2 lg:border-b-[1px] border-primary text-primary"
@@ -64,6 +64,7 @@ export default function Navbar(login: NavbarProps) {
               <a
                 className="block blur-0 py-2 px-3 rounded lg:bg-transparent lg:p-0 "
                 aria-current="page"
+                href="/"
               >
                 Find Project
               </a>
@@ -73,14 +74,12 @@ export default function Navbar(login: NavbarProps) {
                 mentor && "pb-2 lg:border-b-[1px] border-primary text-primary"
               } h-12`}
               onClick={() => {
-                setMentor(true);
-                setProject(false);
-                setChat(false);
               }}
             >
               <a
                 className="block py-2 blur-0 px-3 rounded lg:bg-transparent lg:p-0 "
                 aria-current="page"
+                href="/mentor"
               >
                 Find Mentor
               </a>
@@ -101,13 +100,17 @@ export default function Navbar(login: NavbarProps) {
                 } block py-2 blur-0 px-3 rounded lg:bg-transparent lg:p-0`}
                 aria-current="page"
               >
-                Chat Miez 
+                Chat Miez
               </a>
             </li>
           </ul>
 
           {login.login ? (
-            <div className="flex items-center gap-0">
+            <div
+              className={`gap-0 ${
+                open ? "inline-flex px-4 lg:p-0" : "hidden lg:inline-flex"
+              }`}
+            >
               <div className="flex items-center gap-3 relative cursor-pointer">
                 <div className="w-9 aspect-square bg-slate-300 rounded-full relative overflow-hidden">
                   <Image
