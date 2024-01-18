@@ -1,9 +1,18 @@
 import MentorBox from "@/components/mentor/MentorBox";
+import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { AiOutlineSearch } from "react-icons/ai";
 
 export default function Page() {
+  const cookie = cookies();
+  const token = cookie.get("token");
+
+  if (!token) {
+    redirect("/login");
+  }
+
   return (
     <div>
       <section className="py-14 flex flex-col gap-4 justify-between items-start px-8 lg:py-16 lg:px-32">
@@ -17,7 +26,10 @@ export default function Page() {
             </p>
           </div>
 
-          <Link  href="/mentor/scedhule" className="bg-[#FF6B2D] text-white px-8 py-4 rounded-full font-normal">
+          <Link
+            href="/mentor/scedhule"
+            className="bg-[#FF6B2D] text-white px-8 py-4 rounded-full font-normal"
+          >
             My Schedhule
           </Link>
         </div>
