@@ -6,7 +6,7 @@ export default function Page() {
     <div className="px-[5%] py-4 flex flex-col gap-8">
       <section className="flex flex-col gap-3">
         <h1 className="text-primary text-2xl font-semibold lg:text-4xl">
-          My Schedhule
+          My Schedule
         </h1>
 
         <div className="flex flex-wrap gap-4 lg:gap-12 items-center justify-center">

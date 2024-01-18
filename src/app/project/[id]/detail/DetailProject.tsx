@@ -56,6 +56,7 @@ export default function DetailProject({ params }: { params: { id: string } }) {
         toast.error(message);
       }, 5000);
     }
+
     setIsSubmitting(false);
   };
 

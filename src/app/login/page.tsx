@@ -27,7 +27,7 @@ export default function Login({ whatsapp }: { whatsapp?: string }) {
     setIsSubmitting(true);
 
     const res = await fetch(
-      process.env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/users/login",
+      .env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/users/login",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
