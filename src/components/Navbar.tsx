@@ -16,7 +16,6 @@ export default function Navbar(login: NavbarProps) {
   const [mentor, setMentor] = useState<boolean>(pathname.substring(0,7) == "/mentor");
   const [project, setProject] = useState<boolean>(pathname == "/");
   const [chat, setChat] = useState<boolean>(pathname == "/chat");
-  const router = useRouter();
 
   const handleSignOut = () => {
     cookie.remove("token");
@@ -121,7 +120,7 @@ export default function Navbar(login: NavbarProps) {
                   />
                 </div>
                 <p className="font-league font-semibold text-[1rem] w-24">
-                  Iyal
+                  Khanza
                 </p>
               </div>
               <button
