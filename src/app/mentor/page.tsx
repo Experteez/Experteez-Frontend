@@ -17,13 +17,13 @@ export default function Page() {
             </p>
           </div>
 
-          <button className="bg-[#FF6B2D] text-white px-8 py-4 rounded-full font-normal">
+          <Link  href="/mentor/scedhule" className="bg-[#FF6B2D] text-white px-8 py-4 rounded-full font-normal">
             My Schedhule
-          </button>
+          </Link>
         </div>
 
         <div className="flex flex-col lg:flex-row w-full items-center gap-4">
-          <div className="border-2 border-gray-200 rounded-full px-8 py-2">
+          <div className="border-2 border-primary rounded-full px-8 py-2">
             <select className="bg-transparent outline-none border-none focus:outline-none px-4 py-2">
               <option>Category</option>
               <option>Technology</option>
@@ -71,11 +71,36 @@ export default function Page() {
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-12">
-          <MentorBox name="Auva" role="UI/UX Designer" />
-          <MentorBox name="Kevin" role="Software Engineer" />
-          <MentorBox name="Naufal" role="Data Scientist" />
-          <MentorBox name="Radit" role="Frontend Developer" />
-          <MentorBox name="Abam" role="Data Scientist" />
+          <MentorBox
+            description="Auva is a UI/UX Designer at Tokopedia. He has been working in the industry for 5 years. He is a graduate of the University of Indonesia."
+            imageURL="/mentor/auva.jpeg"
+            name="Auva"
+            role="UI/UX Designer"
+          />
+          <MentorBox
+            description="Kevin Sebastian is a software engineer at Google. He has been working in the industry for 5 years. He is a graduate of the University of Indonesia."
+            imageURL="/mentor/kepin.jpeg"
+            name="Kevin"
+            role="Software Engineer"
+          />
+          <MentorBox
+            description="Ara is a Data Scientist at Gojek. He has been working in the industry for 5 years. He is a graduate of the University of Indonesia."
+            imageURL="/mentor/ara.jpeg"
+            name="Ara"
+            role="Data Scientist"
+          />
+          <MentorBox
+            description="Radit is a Frontend Developer at Tokopedia. He has been working in the industry for 5 years. He is a graduate of the University of Indonesia."
+            imageURL="/mentor/auva.jpeg"
+            name="Radit"
+            role="Frontend Developer"
+          />
+          <MentorBox
+            description="Abam is a Data Scientist at Gojek. He has been working in the industry for 5 years. He is a graduate of the University of Indonesia."
+            imageURL="/mentor/auva.jpeg"
+            name="Abam"
+            role="Data Scientist"
+          />
         </div>
       </section>
     </div>

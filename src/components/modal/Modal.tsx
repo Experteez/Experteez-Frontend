@@ -83,7 +83,7 @@ const Modal: React.FC<ModalProps> = ({
                   {imageURL && (
                     <div className="w-96 aspect-square bg-slate-300 rounded-full relative overflow-hidden">
                       <Image
-                        src={"/mentor/auva.jpeg"}
+                        src={imageURL ?? "/mentor/contact.svg"}
                         fill={true}
                         alt="profile"
                         className="object-cover w-full h-full"

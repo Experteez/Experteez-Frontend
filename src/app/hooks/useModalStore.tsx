@@ -5,6 +5,8 @@ export type ModalType =
 ;
 
 interface ModalData {
+  description?: string;
+  imageURL?: string;
   studentId?: string;
   moduleId?: string;
   courseId?: string;
@@ -16,6 +18,7 @@ interface ModalData {
   firstString?: string;
   secondString?: string;
   thirdString?: string;
+  role?: string;
   isDisplayed?: boolean;
 }
 

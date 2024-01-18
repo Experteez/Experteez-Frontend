@@ -6,15 +6,17 @@ import { AiOutlineRight } from "react-icons/ai";
 interface MentorBoxProps {
   name: string;
   role: string;
+  description: string;
+  imageURL: string;
 }
 
-export default function MentorBox({ name, role }: MentorBoxProps) {
+export default function MentorBox({ name, role, imageURL, description }: MentorBoxProps) {
   const { onOpen } = useModal()
   return (
     <div className="bg-white shadow-lg rounded-lg w-[350px] h-[150px] py-4 px-6 flex gap-8">
       <div className="w-32 aspect-square bg-slate-300 rounded-full relative overflow-hidden">
         <Image
-          src={"/mentor/auva.jpeg"}
+          src={imageURL}
           fill={true}
           alt="profile"
           className="object-cover w-full h-full"
@@ -27,7 +29,7 @@ export default function MentorBox({ name, role }: MentorBoxProps) {
           <p className="text-sm text-secondary">{role}</p>
         </div>
         <button className="bg-[#FF6B2D] text-white px-4 py-2 flex gap-2 items-center rounded-full font-normal"
-          onClick={() => onOpen("mentor")}
+          onClick={() => onOpen("mentor", { name, role, imageURL, description })}
         >
           <p>Details</p>
           <AiOutlineRight className="inline-block ml-2" />

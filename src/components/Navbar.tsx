@@ -13,7 +13,7 @@ interface NavbarProps {
 export default function Navbar(login: NavbarProps) {
   const pathname = usePathname();
   const cookie = new Cookies();
-  const [mentor, setMentor] = useState<boolean>(pathname == "/mentor");
+  const [mentor, setMentor] = useState<boolean>(pathname.substring(0,7) == "/mentor");
   const [project, setProject] = useState<boolean>(pathname == "/");
   const [chat, setChat] = useState<boolean>(pathname == "/chat");
   const router = useRouter();
