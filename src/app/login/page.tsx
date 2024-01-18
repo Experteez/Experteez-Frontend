@@ -1,10 +1,10 @@
 "use client";
-import Image from "next/image";
-import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import Cookies from "universal-cookie";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 export default function Login({ whatsapp }: { whatsapp?: string }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -27,7 +27,7 @@ export default function Login({ whatsapp }: { whatsapp?: string }) {
     setIsSubmitting(true);
 
     const res = await fetch(
-      .env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/users/login",
+      process.env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/users/login",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

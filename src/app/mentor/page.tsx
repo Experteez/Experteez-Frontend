@@ -60,7 +60,7 @@ export default async function Page() {
                 <input
                   className=" h-12 md:px-4 w-full rounded-lg text-base outline-none"
                   type="text"
-                  placeholder="Search for a Projects"
+                  placeholder="Search for Mentors"
                 />
                 <Link
                   href={"/project"}

@@ -87,7 +87,7 @@ const Modal: React.FC<ModalProps> = ({
               <div className="flex items-start justify-between rounded-t relative">
                 <div className="flex gap-12">
                   {imageURL && (
-                    <div className="w-96 aspect-square bg-slate-300 rounded-full relative overflow-hidden">
+                    <div className="w-96 h-fit aspect-square bg-slate-300 rounded-full relative overflow-hidden">
                       <Image
                         src={imageURL ?? "/mentor/contact.svg"}
                         fill={true}

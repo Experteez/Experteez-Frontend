@@ -31,7 +31,7 @@ export default function MentorBox({ name, company, userToken, mentorId, role, im
           <h1 className="text-xl font-semibold">{name}</h1>
           <p className="text-sm text-secondary">{role}</p>
         </div>
-        <button className="bg-[#FF6B2D] text-white px-4 py-2 flex gap-2 items-center rounded-full font-normal"
+        <button className="bg-[#FF6B2D] w-28 text-white px-4 py-2 flex gap-2 items-center rounded-full font-normal"
           onClick={() => onOpen("mentor", { name, company, userToken, mentorId, role, imageURL, description })}
         >
           <p>Details</p>
