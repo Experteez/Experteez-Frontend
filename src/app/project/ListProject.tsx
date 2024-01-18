@@ -8,12 +8,15 @@ interface ListProjectProps {
 export default function ListProject({ data }: ListProjectProps) {
   return (
     <div className="flex flex-wrap items-center justify-center gap-16">
-      {data.map((project: any) => {
+      {data?.map((project: any) => {
         const deadline: Date = new Date(project.deadline);
         const now: Date = new Date();
 
-        const durationInMilliseconds: number = deadline.getTime() - now.getTime();
-        const days: number = Math.floor(durationInMilliseconds / (1000 * 60 * 60 * 24));
+        const durationInMilliseconds: number =
+          deadline.getTime() - now.getTime();
+        const days: number = Math.floor(
+          durationInMilliseconds / (1000 * 60 * 60 * 24)
+        );
 
         let duration: string;
         if (days < 30) {
@@ -26,6 +29,7 @@ export default function ListProject({ data }: ListProjectProps) {
         return (
           <ProjectCard
             key={project.id}
+            projectId={project.id}
             title={project.name}
             description={project.description}
             image={project.image ?? "/mentor/google.png"}

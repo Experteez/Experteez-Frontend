@@ -5,6 +5,7 @@ import { FaLocationPin } from "react-icons/fa6";
 import { TiTime } from "react-icons/ti";
 
 interface ProjectCardProps {
+  projectId: string;
   image: string;
   title: string;
   description: string;
@@ -14,6 +15,7 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({
+  projectId,
   image,
   title,
   description,
@@ -50,7 +52,7 @@ export default function ProjectCard({
       </div>
 
       <Link
-        href="/project/detail"
+        href={`/project/${projectId}/detail`}
         className="bg-[#FF6B2D] font-semibold hover:bg-[#FF6B2D]/90 flex items-center gap-4 px-4 py-2 rounded-full w-1/2"
       >
         <p className="text-white py-2 text-center">Apply</p>

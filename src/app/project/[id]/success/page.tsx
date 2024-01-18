@@ -12,7 +12,7 @@ export default function Page() {
           </h1>
         </div>
         <p className="text-gray-500 text-center">
-          You've just unleashed a wave of awesome by submitting your form.
+          You{"'"}ve just unleashed a wave of awesome by submitting your form.
           Please hoping an email reply within <strong>14 days.</strong>
         </p>
 
