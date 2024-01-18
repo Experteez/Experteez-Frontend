@@ -13,11 +13,9 @@ export default async function Page() {
   if (!token) {
     redirect("/login");
   }
-  // console.log(token)
 
   const res = await fetch(
-    "http://127.0.0.1:8080/api/v1/projects",
-
+    process.env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/projects",
     {
       method: "GET",
       headers: {

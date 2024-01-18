@@ -7,6 +7,9 @@ export type ModalType =
 interface ModalData {
   description?: string;
   imageURL?: string;
+  company?: string;
+  userToken?: string;
+  mentorId?: string;
   studentId?: string;
   moduleId?: string;
   courseId?: string;

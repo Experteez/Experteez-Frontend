@@ -9,6 +9,9 @@ interface ModalProps {
   onClose: () => void;
   onSubmit: () => void;
   title?: string;
+  company?: string;
+  userToken?: string;
+  mentorId?: string;
   subtitle?: string;
   imageURL?: string;
   body?: React.ReactElement;
@@ -25,6 +28,9 @@ const Modal: React.FC<ModalProps> = ({
   onClose,
   onSubmit,
   title,
+  company,
+  userToken,
+  mentorId,
   subtitle,
   imageURL,
   body,
@@ -92,7 +98,12 @@ const Modal: React.FC<ModalProps> = ({
                   )}
                   <div className="flex flex-col gap-4">
                     <p className="text-2xl font-bold">{title}</p>
-                    {subtitle && <p className="text-lg text-secondary">{subtitle}</p>}
+                    {subtitle && (
+                      <p className="text-lg text-secondary">{subtitle}</p>
+                    )}
+                    {company && (
+                      <p className="text-lg text-secondary">@{company}</p>
+                    )}
                     {description && (
                       <p className="text-sm text-gray-500">{description}</p>
                     )}

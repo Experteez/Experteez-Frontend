@@ -5,7 +5,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { AiOutlineSearch } from "react-icons/ai";
 
-export default function Page() {
+export default async function Page() {
   const cookie = cookies();
   const token = cookie.get("token");
 
@@ -13,13 +13,25 @@ export default function Page() {
     redirect("/login");
   }
 
+  const res = await fetch(
+    process.env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/mentors",
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token.value}`,
+      },
+    }
+  );
+
+  const data = await res.json();
+
   return (
     <div>
       <section className="py-14 flex flex-col gap-4 justify-between items-start px-8 lg:py-16 lg:px-32">
         <div className="flex flex-col lg:flex-row items-start justify-between w-full">
           <div className="flex flex-col gap-4 w-[40%]">
             <h1 className="text-4xl lg:text-6xl font-semibold">
-              Experteez Mentor
+              Experteez Mentors
             </h1>
             <p className="text-secondary text-xl lg:text-3xl">
               Guiding Your Growth, Elevate Your Skills With Expert Mentors
@@ -30,7 +42,7 @@ export default function Page() {
             href="/mentor/scedhule"
             className="bg-[#FF6B2D] text-white px-8 py-4 rounded-full font-normal"
           >
-            My Schedhule
+            My Schedule
           </Link>
         </div>
 
@@ -83,36 +95,53 @@ export default function Page() {
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-12">
-          <MentorBox
-            description="Auva is a UI/UX Designer at Tokopedia. He has been working in the industry for 5 years. He is a graduate of the University of Indonesia."
+          {data.map((mentor: any) => (
+            <MentorBox
+              key={mentor.id}
+              mentorId={mentor.id}
+              description={mentor.bio || "No bio."}
+              company={mentor.company || "No company."}
+              imageURL={mentor.photo || "/mentor/auva.jpeg"}
+              name={mentor.name}
+              userToken={token.value}
+              role={mentor.specialty}
+            />
+          ))}
+          {/* <MentorBox
+            description="Auva is a UI/UX Designer at Shopee. He has been working in the industry for 5 years. He is a graduate of the University of Indonesia."
             imageURL="/mentor/auva.jpeg"
+            company="Shopee"
             name="Auva"
             role="UI/UX Designer"
           />
           <MentorBox
             description="Kevin Sebastian is a software engineer at Google. He has been working in the industry for 5 years. He is a graduate of the University of Indonesia."
             imageURL="/mentor/kepin.jpeg"
+            company="Google"
             name="Kevin"
             role="Software Engineer"
           />
           <MentorBox
             description="Ara is a Data Scientist at Gojek. He has been working in the industry for 5 years. He is a graduate of the University of Indonesia."
             imageURL="/mentor/ara.jpeg"
+            company="Gojek"
             name="Ara"
             role="Data Scientist"
           />
           <MentorBox
             description="Radit is a Frontend Developer at Tokopedia. He has been working in the industry for 5 years. He is a graduate of the University of Indonesia."
             imageURL="/mentor/auva.jpeg"
+            company="Tokopedia"
             name="Radit"
             role="Frontend Developer"
           />
           <MentorBox
             description="Abam is a Data Scientist at Gojek. He has been working in the industry for 5 years. He is a graduate of the University of Indonesia."
             imageURL="/mentor/auva.jpeg"
+            company="Gojeek"
             name="Abam"
             role="Data Scientist"
-          />
+          /> */}
         </div>
       </section>
     </div>
