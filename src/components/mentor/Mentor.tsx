@@ -33,7 +33,10 @@ export default function Mentor() {
                   type="text"
                   placeholder="Search for a Projects"
                 />
-                <Link href={"/project"}  className="bg-primary hover:bg-primary/90 text-white rounded-lg px-4 h-12 flex items-center">
+                <Link
+                  href={"/project"}
+                  className="bg-primary hover:bg-primary/90 text-white rounded-lg px-4 h-12 flex items-center"
+                >
                   Search
                 </Link>
               </div>
@@ -63,27 +66,27 @@ export default function Mentor() {
         </h1>
         <p>These are the companies that have joined us</p>
 
-        <div className="bg-white rounded-lg text-black py-4 px-16 flex flex-wrap justify-center gap-16">
+        <div className="bg-white rounded-lg text-black py-4 px-16 flex w-4/5 flex-wrap justify-around gap-16">
           <Image
             src={"/mentor/google.png"}
             alt="google"
-            width={167}
+            width={127}
             height={100}
           />
-          <Image src={"/mentor/aws.png"} alt="aws" width={123} height={50} />
+          <Image src={"/mentor/aws.svg"} alt="aws" width={83} height={50} />
           <Image
-            src={"/mentor/microsoft.png"}
+            src={"/mentor/microsoft.svg"}
             alt="microsoft"
-            width={230}
+            width={180}
             height={100}
           />
           <Image
-            src={"/mentor/apple.png"}
+            src={"/mentor/apple.svg"}
             alt="apple"
             width={82}
             height={100}
           />
-          <Image src={"/mentor/ibm.png"} alt="ibm" width={74} height={100} />
+          <Image src={"/mentor/ibm.svg"} alt="ibm" width={74} height={100} />
         </div>
 
         <Image
