@@ -48,13 +48,13 @@ export default function DetailProject({ params }: { params: { id: string } }) {
         toast.success(
           "Successfully applied!, please wait for the response on your email."
         );
-      }, 5000);
+      }, 500);
       router.push("/project/${params.id}/success");
     } else {
       const { message } = await res.json();
       setTimeout(() => {
         toast.error(message);
-      }, 5000);
+      }, 500);
     }
 
     setIsSubmitting(false);

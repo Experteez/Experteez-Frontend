@@ -40,13 +40,13 @@ const DetailMentor = () => {
     if (res.ok) {
       setTimeout(() => {
         toast.success(`You have applied to ${data.name} as a mentor!`);
-      }, 5000);
+      }, 500);
       onClose();
     } else {
       const { message } = await res.json();
       setTimeout(() => {
         toast.error(message);
-      }, 5000);
+      }, 500);
     }
     setIsSubmitting(false);
   };
